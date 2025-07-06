@@ -1,35 +1,24 @@
 import pygame
-import constants
+from constants import *
+from player import Player
 
 
 def main():
-    pygame.init()  # Initialize pygame
-
-    clock = pygame.time.Clock()  # Start the clock
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    clock = pygame.time.Clock()
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     dt = 0
-
-    screen = pygame.display.set_mode(
-        (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-    )  # Set the screen size
-
-    # Colors
-    red = (255, 0, 0)
-    blue = (0, 0, 255)
-    green = (0, 255, 0)
-    black = (0, 0, 0)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        # Fill the screen with black
-        screen.fill(black)
-
-        # Update the display
+        screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
-        clock.tick(60)
-        clock.get_time()
+
         dt = clock.tick(60) / 1000
 
 
